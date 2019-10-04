@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div>
+<h2>{{project.project_title}}</h2>
+<h5>{{project.subject}}</h5>
+{% if project.attachment %}
+<iframe name="awindow" width="1400" height="650"
+src={{project.attachment.url}}>scrolling="auto"</iframe>
+{% else %}
+{% endif %}
+</div>
+{% endblock content %}

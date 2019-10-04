@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div>{{note.note_content | safe}}</div>
+{% if note.attachment %}
+<iframe name="awindow" width="1400" height="650"
+src={{note.attachment.url}}>scrolling="auto"</iframe>
+{% else %}
+{% endif %}
+{% endblock content %}

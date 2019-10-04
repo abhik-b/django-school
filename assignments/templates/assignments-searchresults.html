@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Practice Assignments :-</h3>
+{% for n in ass %}
+{% if n.class_name.id == class.id %}
+<li class="list-group-item" style='border:none'>
+<a href="{% url 'assignments:assignment-detail' n.id %}">Practice Assignment no.{{n.id}}</a>
+</li>
+{% else %}
+{% endif %}
+
+{% endfor %}
+{% endblock content %}

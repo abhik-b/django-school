@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="{% url 'assignments:search-results' class.id%}" >
+{% csrf_token %}
+<input id="q" type="text" name="q" value="{{ current_name }}" placeholder='Search only assignments number or subject name' style='padding:5px;margin:10px'/>
+</form>
+
+{% for assignment in assignments %}
+
+<li class="list-group-item" style='border:none'>
+<a href="{% url 'assignments:assignment-detail' assignment.id %}"># {{forloop.counter}} -Practice Assignment no.{{assignment.id}}</a>
+</li>
+{% endfor %}
+{% endblock content %}
+
+

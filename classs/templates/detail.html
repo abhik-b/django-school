@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<h1> Class : {{class.name}}</h1>
+<br/>
+<h6 style="padding:5px">Select one from below:</h6>
+<br/>
+<ul class="list-group list-group-horizontal-md">
+{% if class.note_set.all  %}
+<li class="list-group-item"style='border:none'><a href="{% url 'classs:class-notes' class.id %}">Notes</a></li>
+
+{% else %}
+<li class="list-group-item"style='border:none'>No Notes</li>
+{% endif %}
+{% comment %} <br/>
+<br/> {% endcomment %}
+{% if class.project_set.all  %}
+<li class="list-group-item" style='border:none'><a href="{% url 'classs:class-projects' class.id %}">Projects</a></li>
+
+{% else %}
+<li class="list-group-item"style='border:none'>No Projects</li>
+{% endif %}
+<br/>
+<br/>
+{% if class.assignment_set.all  %}
+<li class="list-group-item"style='border:none'><a href="{% url 'classs:class-assignments' class.id %}">Practice MCQ Assignments</a></li>
+
+{% else %}
+<li class="list-group-item"style='border:none'>No Practice Assignments</li>
+{% endif %}
+
+  
+</ul>
+<div class="card">
+  <div class="card-header">
+  <h3>Attendance Check</h3>
+  </div>
+  <div class="card-body">
+    
+    <h6 class="lead">enter number of days you were present</h6>
+<form action="{% url 'classs:class-att-check' class.id  %}">
+{% csrf_token %}
+<input id='ac' name='ac' value="{{ current_name }}" type='text' placeholder='for example: enter 225 '/>
+</form>
+ </div>
+</div>
+<div>
+{% if message %}
+{% if message == 'PASS' %}
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Congratulations!!</h4>
+<p>Your attendance is above or equal to the {{class.criteria_percent}}% criteria!!</p>
+ 
+</div>
+{% else %}
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading">Sorry! Your attendance does not meet the criteria</h4>
+ <p>You should be present atleast {{class.days_atleast}} days in order to reach {{class.criteria_percent}}% criteria!!</p>
+</div>
+{% endif %}
+{% comment %} <h6 class='alert-danger'>{{message}}</h6> {% endcomment %}
+{% else %}
+
+{% endif %}
+ 
+
+
+
+
+</div>
+{% endblock content %}

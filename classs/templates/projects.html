@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{% url 'projects:search-results' class.id%}" >
+{% csrf_token %}
+<input id="q" type="text" name="q" value="{{ current_name }}" placeholder='Search projects or subject' style='margin:5px'/>
+</form>
+{% for project in projects %}
+<li class="list-group-item" style='border:none'>
+<a href="{% url 'projects:projects-detail' project.id %}"># {{forloop.counter}} -{{project.project_title}}</a>
+</li>
+{% endfor %}
+
+{% endblock content %}

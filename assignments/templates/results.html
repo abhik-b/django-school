@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+ {% block content %}
+<h5 style='margin:20px'>Q- {{question.question_text}}</h5>
+
+{% if assignment.marks > 0 %}
+<div class="card alert-success" style='margin:20px'>
+  <div class="card-body">
+   <h3 >You selected Right Answer !!!</h3>
+   <h4>Answer is : {{question.answer_text}}</h4>
+  </div>
+</div>
+{% else %}
+<div class="card alert-danger" style='margin:20px'>
+  <div class="card-body">
+   <h3 >You selected Wrong Answer 😖</h3>
+   <h4>Answer is : {{question.answer_text}}</h4>
+  </div>
+</div>
+
+{% endif %}
+
+
+ {% endblock content %}

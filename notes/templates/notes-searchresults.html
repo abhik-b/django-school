@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Notes :-</h3>
+
+{% for n in note %}
+{% if n.class_name.id == class.id %}
+
+<li class="list-group-item" style='border:none'>
+<a href="{% url 'notes:notes-detail' n.id %}">{{n.note_title}}</a>
+</li>
+{% else %}
+{% endif %}
+{% endfor %}
+{% endblock content %}
+
+

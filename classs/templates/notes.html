@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% block content %}
+<form action="{% url 'notes:search-results' class.id%}" >
+{% csrf_token %}
+
+<input id="q" type="text" name="q" value="{{ current_name }}" placeholder='search notes or subject ' style='padding:5px;margin:10px'/>
+</form>
+
+
+
+  <ul class="list-group list-group-flush">
+{% for note in notes %}
+
+  <li class="list-group-item" style='border:none'>
+  <a href="{% url 'notes:notes-detail' note.id %}">#{{forloop.counter}} - {{note.note_title}}</a>
+  </li>
+
+  {% endfor %}
+
+  </ul>
+{% endblock content %}
+

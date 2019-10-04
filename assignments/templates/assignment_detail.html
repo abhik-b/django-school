@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Practice MCQs </h3>
+<h5>Subject: {{a.subject}}</h5>
+{% for q in a.question_set.all  %}
+<div style='padding:10px;margin:5px'>
+<h4>Q{{forloop.counter}} -{{q.question_text}}</h4>
+<div style='padding:10px;margin:5px'>
+<form action="{% url 'assignments:vote' q.id %}" method="post">
+{% csrf_token %}
+{% for choice in q.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{choice.choice_text}}</label><br>
+{% endfor %}
+<input type="submit" value="Check Answer" class="btn btn-warning">
+</form>
+</div>
+</div>
+{% endfor %}
+{% endblock content %}
