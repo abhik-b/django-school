@@ -6,7 +6,7 @@
   
   <li class="list-group-item " style='border:none'>
    <a href="{% url 'classs:class-detail' class.id %}" >{{class.name}}</a>
-    <span class="badge badge-primary badge-pill">{{class.id}}</span>
+    <span class="badge badge-primary badge-pill">{{forloop.counter}}</span>
   </li>
 </ul>
 <br/>
